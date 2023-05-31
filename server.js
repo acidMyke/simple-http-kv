@@ -7,6 +7,7 @@
 
 import express from 'express';
 import fs from 'fs/promises';
+import cors from 'cors';
 
 const app = express();
 const port = 2712;
@@ -44,6 +45,12 @@ loadData().catch(err => {
     saveData();
   } else console.error(err);
 });
+
+app.use(
+  cors({
+    origin: ['https://glowing-treacle-ab9c8f.netlify.app/'],
+  })
+);
 
 // parse json body
 app.use(express.json());
